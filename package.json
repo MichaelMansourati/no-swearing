@@ -1,0 +1,16 @@
+{
+  "name": "No Swearing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "hueynpm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^1.6.5",
+    "express": "^4.15.2",
+    "huey": "^2.0.0",
+  }
+}
