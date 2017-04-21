@@ -1,0 +1,35 @@
+body {
+  display: flex;
+  flex-direction: column; }
+  body div.upper-space {
+    height: 10%; }
+    body div.upper-space form.searchbar-form {
+      right: 5px;
+      top: 5px;
+      position: fixed; }
+  body div.big-container {
+    height: 80%;
+    flex-direction: column; }
+    body div.big-container div.half-container {
+      flex: 1;
+      padding: 1px;
+      display: flex;
+      flex-direction: row; }
+    body div.big-container div.half-container-top {
+      height: 50%;
+      flex: 1; }
+    body div.big-container div.half-container-bottom {
+      height: 50%;
+      flex: 1; }
+
+div.card {
+  height: 100%; }
+
+img.the-goods {
+  height: 100%;
+  padding: 1px; }
+
+div.lower-space {
+  height: 10%; }
+
+/*# sourceMappingURL=styles.css.map */

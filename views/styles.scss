@@ -1,0 +1,43 @@
+body {
+  display: flex;
+  flex-direction: column;
+  div.upper-space {
+    height: 10%;
+    h1.title {
+    }
+    form.searchbar-form {
+      right: 5px;
+      top: 5px;
+      position: fixed;
+    }
+  }
+  div.big-container {
+    height: 80%;
+    flex-direction: column;
+      div.half-container {
+        flex: 1;
+        padding: 1px;
+        display: flex;
+        flex-direction: row;
+      }
+    div.half-container-top {
+      height: 50%;
+      flex: 1;
+    }
+    div.half-container-bottom {
+      height: 50%;
+      flex: 1;
+    }
+  }
+  div.lower-space {
+    height: 10%;
+  }
+}
+
+div.card {
+  height: 100%;
+  img.the-goods {
+    height: 100%;
+    padding: 1px;
+  }
+}
