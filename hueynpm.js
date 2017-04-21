@@ -5,8 +5,21 @@ var huey = require('huey')
 var express = require("express")
 var app = express()
 var PORT = process.env.PORT || 8080
+var API500px = require('500px'),
+    api500px = new API500px('oWNQ7L5evkIbRg5ZUUXYiWdpAVdWhpQf3iRlZe0F');
 
-const img = './testpic3.jpg'
+api500px.photos.getPopular({'sort': 'created_at', 'rpp': '100'},  function(error, results) {
+  if (error) {
+    throw err
+    // Error!
+    return;
+  }
+console.log(results)
+  // Do something
+});
+
+
+const img = './DSCF0562.jpg'
 
 let hex = []
 huey.palette(img, 4, function(error, palette, image) {

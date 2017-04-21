@@ -1,16 +1,24 @@
 {
-  "name": "No Swearing",
+  "name": "no-swearing",
   "version": "1.0.0",
   "description": "",
   "main": "hueynpm.js",
+  "dependencies": {
+    "get-image-data": "^3.0.1",
+    "500px": "^0.5.1"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laijoann/no-swearing.git"
+  },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "canvas": "^1.6.5",
-    "express": "^4.15.2",
-    "huey": "^2.0.0",
-  }
+  "bugs": {
+    "url": "https://github.com/laijoann/no-swearing/issues"
+  },
+  "homepage": "https://github.com/laijoann/no-swearing#readme"
 }
