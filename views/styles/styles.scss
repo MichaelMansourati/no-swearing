@@ -1,0 +1,65 @@
+body {
+  display: flex;
+  flex-direction: column;
+  div.upper-space {
+    height: 10%;
+    h1.title {
+    }
+    form.searchbar-form {
+      right: 5px;
+      top: 5px;
+      position: fixed;
+    }
+  }
+  div.big-container {
+    height: 80%;
+    flex-direction: column;
+    div.half-container {
+      flex: 1;
+      padding: 1px;
+      display: flex;
+      flex-direction: row;
+    }
+    div.half-container-top {
+      height: 50%;
+    }
+    div.half-container-bottom {
+      height: 50%;
+    }
+  }
+  div.lower-space {
+    height: 10%;
+  }
+}
+
+div.card {
+  height: 100%;
+  img.the-goods {
+    height: 100%;
+    padding: 1px;
+  }
+  div.palette-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: 250px;
+    justify-content: center;
+    margin-top: -70px;
+    .color {
+      height: 50px;
+      width: 50px;
+    }
+    .color-1 {
+      background-color: red;
+    }
+    .color-2 {
+      background-color: blue;
+    }
+    .color-3 {
+      background-color: green;
+    }
+    .color-4 {
+      background-color: yellow;
+    }
+  }
+}
