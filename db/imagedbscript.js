@@ -12,10 +12,10 @@ flickrOptions = {
     timeout: 20000,
   }
 }
-const flickrgroupIDs = ['17242708@N00', '51829765@N00', '81344316@N00', '541622@N23']
-//all 4 relevant flickr photo groups
-let data = {}
-let toSave = ''
+
+const flickrgroupIDs = ['17242708@N00', '51829765@N00', '81344316@N00', '541622@N23'] //all 4 relevant flickr photo groups
+let data = {} //each photo is its own object within this master object
+let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
@@ -28,7 +28,6 @@ const flickrPromise = () => {
           page: 1
         }, function(err, result) {
           if (err) {throw new Error(err)}
-          //console.log(result.photos.photo)
           result.photos.photo.forEach((bloop) => {
             flickr.photos.getInfo({
               photo_id: bloop.id
@@ -45,7 +44,7 @@ const flickrPromise = () => {
           })
         })
       })
-      resolve()
+      setTimeout(() => resolve("A"), 5000)
     })
   })
 } //makes 2 API calls to Flickr - then adds a new object to data for each photo with geo-locations
@@ -87,11 +86,9 @@ const visionPromise = () => {
           paletteArr.push(clrObj)
         })
         data[j]['palette'] = paletteArr
-        console.log(data[j])
       })
     }
-    console.log('vision complete')
-    resolve()
+    setTimeout(() => resolve("B"), 5000)
   })
 } //palettizes URL images with an API call to Google Vision
 
@@ -100,15 +97,14 @@ const makeString = () => {
     console.log(`begin data object massaging`)
     toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
     for (let i in data) {
-      //console.log(data[i])
       const p = data[i].geo
       const s = data[i].palette
-      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.county._content}', region: '${p.region._content}', country: '${p.country._content}'}, views: ${data[i].views}, palette: [${s}] ),\n`
+      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.county._content}', region: '${p.region._content}', country: '${p.country._content}'}, views: ${data[i].views}, palette: [{score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}}] ),\n`
     }
     toSave += ']);\n});\n};'
-    resolve()
+    setTimeout(() => resolve("C"), 1000)
   })
-}
+} //massages the object data into knex calls
 
 const writeStream = () => {
   return new Promise((resolve) => {
@@ -118,10 +114,24 @@ const writeStream = () => {
         return console.log(err)
       }
       console.log("seed file successfully created - remember to delete the comma from the last knex call")
+      resolve("D")
     })
-    resolve()
   })
-}
+} //file stream to write into the seed file
+
+/*
+flickrPromise()
+.then(() => {
+  visionPromise()
+})
+.then(() => {
+  makeString()
+})
+.then(() => {
+  writeStream()
+})
+.catch(console.error)
+*/
 
 (async function() {
   let result = await flickrPromise()
