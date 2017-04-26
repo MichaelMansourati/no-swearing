@@ -18,9 +18,13 @@
   },
   "homepage": "https://github.com/laijoann/no-swearing#readme",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
+    "express": "^4.15.2",
     "flickrapi": "^0.6.0",
     "knex": "^0.12.9",
+    "knex-logger": "^0.1.0",
+    "morgan": "^1.8.1",
     "pg": "^6.1.5",
     "request": "^2.81.0",
     "sqlite3": "^3.1.8"
