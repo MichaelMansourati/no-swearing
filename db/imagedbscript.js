@@ -99,7 +99,7 @@ const makeString = () => {
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
-      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.county._content}', region: '${p.region._content}', country: '${p.country._content}'}, views: ${data[i].views}, palette: [{score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}}] ),\n`
+      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.county._content}', region: '${p.region._content}', country: '${p.country._content}'}, views: ${data[i].views}, c1: {score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, c2: {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, c3: {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, c4: {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}} }),\n`
     }
     toSave += ']);\n});\n};'
     setTimeout(() => resolve("C"), 1000)
