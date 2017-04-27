@@ -11,7 +11,6 @@ const knex        = require('knex')(knexConfig[ENV])
 const morgan      = require('morgan')
 const knexLogger  = require('knex-logger')
 
-// Seperated Routes for each Resource
 const dashboardRoutes = require('./routes/dashboard')
 const landingRoutes = require('./routes/landing')
 

@@ -12,7 +12,7 @@ module.exports = (knex) => {
     })
   }) //landing page for the site
 
-  router.get('/colour/:hex', (req, res) => {
+  router.get('/palette/:hex', (req, res) => {
     knex
       .select('*')
       .from('imagesdb')
@@ -30,7 +30,7 @@ module.exports = (knex) => {
     })
   }) //location query
 
-  router.post('/fav/:imageid', (req, res) => {
+  router.post('/fave/:imageid', (req, res) => {
     knex
       .select('*')
       .from('likesdb')

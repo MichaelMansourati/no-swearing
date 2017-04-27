@@ -13,8 +13,7 @@ module.exports = (knex) => {
   }) //users dashboard
 
   router.post('/login', (req, res) => {
-    //log in validation!
-    //needs bcrypt
+    //log in validation! (with bcrypt)
     knex
       .select('*')
       .from('usersdb')
@@ -24,8 +23,7 @@ module.exports = (knex) => {
   }) //user login
 
   router.post('/signup', (req, res) => {
-    //sign up validation
-    //also bcrypt for valid not-duplicated emails
+    //sign up validation (also bcrypt for valid not-duplicated emails)
     knex
       .select('*')
       .from('usersdb')
