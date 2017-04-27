@@ -24,7 +24,7 @@ const flickrPromise = () => {
       flickrgroupIDs.forEach((group) => {
         flickr.groups.pools.getPhotos({
           group_id: group,
-          per_page: 10,
+          per_page: 500,
           page: 1
         }, function(err, result) {
           if (err) {throw new Error(err)}
@@ -34,17 +34,22 @@ const flickrPromise = () => {
             }, function(err, result) {
               if (err) {throw new Error(err)}
               const bleep = result.photo
-              if (bleep.location != undefined) {
-                data[bleep.id] = {}
-                data[bleep.id]['url'] = `https://farm${bleep.farm}.staticflickr.com/${bleep.server}/${bleep.id}_${bleep.secret}.jpg`
-                data[bleep.id]['geo'] = bleep.location
-                data[bleep.id]['views'] = Number(bleep.views)
+              if (bleep.hasOwnProperty('location')) {
+                let p = bleep.location
+                if (p.hasOwnProperty('neighbourhood') && p.hasOwnProperty('locality') && p.hasOwnProperty('region') && p.hasOwnProperty('country')) {
+                  data[bleep.id] = {}
+                  data[bleep.id]['url'] = `https://farm${bleep.farm}.staticflickr.com/${bleep.server}/${bleep.id}_${bleep.secret}.jpg`
+                  data[bleep.id]['photog'] = bleep.owner.realname
+                  data[bleep.id]['geo'] = bleep.location
+                  data[bleep.id]['views'] = Number(bleep.views)
+                  console.log(data[bleep.id])
+                }
               }
             })
           })
         })
       })
-      setTimeout(() => resolve("A"), 5000)
+      setTimeout(() => resolve("A"), 25000)
     })
   })
 } //makes 2 API calls to Flickr - then adds a new object to data for each photo with geo-locations
@@ -88,7 +93,7 @@ const visionPromise = () => {
         data[j]['palette'] = paletteArr
       })
     }
-    setTimeout(() => resolve("B"), 5000)
+    setTimeout(() => resolve("B"), 15000)
   })
 } //palettizes URL images with an API call to Google Vision
 
@@ -99,7 +104,7 @@ const makeString = () => {
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
-      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.county._content}', region: '${p.region._content}', country: '${p.country._content}'}, views: ${data[i].views}, c1: {score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, c2: {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, c3: {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, c4: {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}} }),\n`
+      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}'}, photog: '${data[i].photog}' views: ${data[i].views}, c1: {score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, c2: {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, c3: {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, c4: {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}} }),\n`
     }
     toSave += ']);\n});\n};'
     setTimeout(() => resolve("C"), 1000)

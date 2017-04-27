@@ -5,6 +5,7 @@ exports.up = function(knex, Promise) {
       table.increments('id').primary();
       table.string('url');
       table.integer('views');
+      table.string('photog');
       table.json('geo');
       table.json('c1');
       table.json('c2');
