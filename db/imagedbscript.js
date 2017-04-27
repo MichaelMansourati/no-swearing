@@ -95,6 +95,7 @@ const visionPromise = () => {
         counter += 1
         if (counter === 900) {
           setTimeout(() => 120000)
+          counter = 0
         }
       })
     }
