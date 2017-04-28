@@ -24,6 +24,6 @@ app.use(express.static('public'))
 app.use('/', dashboardRoutes(knex))
 app.use('/', landingRoutes(knex))
 
-app.listen(PORT, () => {
-  console.log('Example app listening on port ' + PORT)
-})
+// app.listen(PORT, () => {
+//   console.log('Example app listening on port ' + PORT)
+// })
