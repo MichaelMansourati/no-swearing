@@ -73,7 +73,7 @@ const mockReq = (url) => {
 
 const visionPromise = () => {
   return new Promise((resolve) => {
-    let counter = 0
+    //let counter = 0
     console.log(`begin Vision API call for palettes`)
     for (let j in data) {
       let paletteArr = []
@@ -92,14 +92,14 @@ const visionPromise = () => {
           paletteArr.push(clrObj)
         })
         data[j]['palette'] = paletteArr
-        counter += 1
-        if (counter === 900) {
-          setTimeout(() => 120000)
-          counter = 0
-        }
+        //counter += 1
+        // if (counter === 900) {
+        //   setTimeout(() => 120000)
+        //   counter = 0
+        // }
       })
     }
-    //setTimeout(() => resolve("B"), 15000)
+    setTimeout(() => resolve("B"), 15000)
   })
 } //palettizes URL images with an API call to Google Vision
 
@@ -110,7 +110,7 @@ const makeString = () => {
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
-      toSave += `knex('imagesdb').insert({url: '${data[i].url}', geo: {lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', county: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}'}, photog: '${data[i].photog}', views: ${data[i].views}, c1: {score: ${s[0].score}, red: ${s[0].red}, green: ${s[0].green}, blue: ${s[0].blue}}, c2: {score: ${s[1].score}, red: ${s[1].red}, green: ${s[1].green}, blue: ${s[1].blue}}, c3: {score: ${s[2].score}, red: ${s[2].red}, green: ${s[2].green}, blue: ${s[2].blue}}, c4: {score: ${s[3].score}, red: ${s[3].red}, green: ${s[3].green}, blue: ${s[3].blue}} }),\n`
+      toSave += `knex('imagesdb').insert({url: '${data[i].url}', lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', locality: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}', photog: '${data[i].photog}', views: ${data[i].views}, score1: ${s[0].score}, red1: ${s[0].red}, green1: ${s[0].green}, blue1: ${s[0].blue}, score2: ${s[1].score}, red2: ${s[1].red}, green2: ${s[1].green}, blue2: ${s[1].blue}, score3: ${s[2].score}, red3: ${s[2].red}, green3: ${s[2].green}, blue3: ${s[2].blue}, score4: ${s[3].score}, red4: ${s[3].red}, green4: ${s[3].green}, blue4: ${s[3].blue} }),\n`
     }
     toSave += ']);\n});\n};'
     setTimeout(() => resolve("C"), 1000)
