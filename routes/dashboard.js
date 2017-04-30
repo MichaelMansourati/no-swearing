@@ -23,7 +23,7 @@ module.exports = (knex) => {
 
   router.post('/login', (req, res) => {
     //log in validation! (with bcrypt)
-
+    
   }) //user login
 
   router.post('/signup', (req, res) => {
