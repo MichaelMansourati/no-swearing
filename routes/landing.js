@@ -8,6 +8,7 @@ console.log(req.body) >> to double check where the content is!
 module.exports = (knex) => {
 
   router.get('/', (req, res) => {
+    //add implementation for logged-in users on which image is already faved!!
     knex('imagesdb')
     .whereBetween('red1', [0, 60]) // WHEN DB IS FULLY SEEDED
     .andWhereBetween('green1', [0, 60]) //DONT FORGET TO CHANGE THESE RGB VALUES
@@ -21,11 +22,14 @@ module.exports = (knex) => {
   })//landing page for the site
 
   router.get('/palette', (req, res) => {
+    const red1Range = []
+    const green1Range = []
+    const blue1Range = []
     //1 colour query:
     knex('imagesdb')
-    .whereBetween('red1', [req.body.someshit, req.body.someshit])
-    .andWhereBetween('green1', [req.body.someshit, req.body.someshit])
-    .andWhereBetween('blue1', [req.body.someshit, req.body.someshit])
+    .whereBetween('red1', red1Range)
+    .andWhereBetween('green1', green1Range)
+    .andWhereBetween('blue1', blue1Range)
     //.andWhere('score1', '>', 0.15)
     .select('*')
     .limit(60)
@@ -35,9 +39,10 @@ module.exports = (knex) => {
   }) //colour query
 
   router.get('/geo', (req, res) => {
+    const neighbourhood = req.body.neighbourhood
     knex('imagesdb')
     .select('*')
-    .where('neighbourhood', req.body.geo)
+    .where('neighbourhood', neighbourhood)
     .limit(60)
     .then((results) => {
       res.json(results)
@@ -45,8 +50,10 @@ module.exports = (knex) => {
   }) //location query
 
   router.post('/fave/:imageid', (req, res) => {
+    const userid = req.body.someshit
+    const imageid = req.body.someshit
     knex('likesdb')
-    .insert({usersid: req.body.usersid, imagesid: req.body.imagesid}) //TODO: double check that these req.body.SOMESHIT is correct
+    .insert({usersid: userid, imagesid: imageid}) //TODO: double check that these req.body.SOMESHIT is correct
     .then(() => {
       res.sendStatus(200)
     })
