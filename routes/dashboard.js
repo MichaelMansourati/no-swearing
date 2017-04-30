@@ -8,13 +8,13 @@ module.exports = (knex) => {
     .select('imagesid')
     .where('usersid', 1) //req.body.usersid !!
     .then((results) => {
-      const urlArr = []
+      const idArr = []
       results.forEach((result) => {
-        urlArr.push(result.imagesid)
+        idArr.push(result.imagesid)
       })
       knex('imagesdb')
       .select('*')
-      .whereIn('id', urlArr)
+      .whereIn('id', idArr)
       .then((results) => {
         res.json(results)
       })
@@ -23,7 +23,7 @@ module.exports = (knex) => {
 
   router.post('/login', (req, res) => {
     //log in validation! (with bcrypt)
-    
+
   }) //user login
 
   router.post('/signup', (req, res) => {
