@@ -2,7 +2,7 @@ const express = require('express')
 const router  = express.Router()
 /*
 TODO:
-AFTER the real massive db seeding, look into how many urls i can actually get back
+AFTER the real massive db seeding, look into how many urls i can actually get back so determine colour range and score minimum
 console.log(req.body) >> to double check where the content is!
 */
 module.exports = (knex) => {

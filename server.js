@@ -5,7 +5,7 @@ const ENV         = process.env.ENV || 'development'
 const express     = require('express')
 const bodyParser  = require('body-parser')
 const app         = express()
-
+const bcrypt      = require('bcrypt')
 const knexConfig  = require('./knexfile')
 const knex        = require('knex')(knexConfig[ENV])
 const morgan      = require('morgan')
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 // Mount all resource routes
-app.use('/', dashboardRoutes(knex))
+app.use('/', dashboardRoutes(knex, bcrypt))
 app.use('/', landingRoutes(knex))
 
 // app.listen(PORT, () => {
