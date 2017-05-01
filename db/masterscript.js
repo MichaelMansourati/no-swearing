@@ -25,7 +25,7 @@ const flickrPromise = () => {
         flickr.groups.pools.getPhotos({
           group_id: group,
           per_page: 500,
-          page: 1
+          page: 2
         }, function(err, result) {
           if (err) {throw new Error(err)}
           result.photos.photo.forEach((bloop) => {
