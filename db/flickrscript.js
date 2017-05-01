@@ -3,7 +3,6 @@ const request = require('request')
 const dotenv = require('dotenv').config()
 const flickrkey = process.env.FLICKR_API_KEY
 const flickrsecret = process.env.FLICKR_API_SECRET
-const visionkey = process.env.VISION_API_KEY
 const Flickr = require("flickrapi"),
 flickrOptions = {
   api_key: flickrkey,
@@ -26,6 +25,7 @@ const flickrPromise = () => {
         page: 25
       }, function(err, result) {
         if (err) {throw new Error(err)}
+        console.log(result.photos)
         result.photos.photo.forEach((bloop) => {
           flickr.photos.getInfo({
             photo_id: bloop.id
