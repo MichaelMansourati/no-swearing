@@ -32,6 +32,7 @@ module.exports = (knex) => {
       }) //HOW TO PROMISIFY THIS SO THE RES.JSON RESULTS WILL SEND PROPERLY
       //res.json(results)
     })
+    .catch((err) => { console.error(err) })
   })//landing page for the site
 
   router.get('/palette', (req, res) => {
@@ -49,6 +50,7 @@ module.exports = (knex) => {
     .then((results) => {
       res.json(results)
     })
+    .catch((err) => { console.error(err) })
     //TODO: multi-colour query
 
   }) //colour query
@@ -62,6 +64,7 @@ module.exports = (knex) => {
     .then((results) => {
       res.json(results)
     })
+    .catch((err) => { console.error(err) })
   }) //location query
 
   router.post('/fave/:imageid', (req, res) => {
@@ -72,6 +75,7 @@ module.exports = (knex) => {
     .then(() => {
       res.sendStatus(200)
     })
+    .catch((err) => { console.error(err) })
   }) //user faving a picture
 
   return router

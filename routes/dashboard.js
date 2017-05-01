@@ -19,6 +19,7 @@ module.exports = (knex, bcrypt) => {
         res.json(results)
       })
     })
+    .catch((err) => { console.error(err) })
   }) //users dashboard
 
   router.post('/login', (req, res) => {
@@ -38,7 +39,7 @@ module.exports = (knex, bcrypt) => {
         res.status(403).send('Log in failed!');
       }
     })
-    .catch(console.error)
+    .catch((err) => { console.error(err) })
   }) //checks against usersdb for user login
 
   router.post('/signup', (req, res) => {
@@ -61,7 +62,7 @@ module.exports = (knex, bcrypt) => {
         })
       }
     })
-    .catch(console.error)
+    .catch((err) => { console.error(err) })
   }) //inserting valid new users into usersdb
 
   return router
