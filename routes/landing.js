@@ -36,6 +36,8 @@ module.exports = (knex) => {
     .then((results) => {
       res.json(results)
     })
+    //TODO: multi-colour query
+    
   }) //colour query
 
   router.get('/geo', (req, res) => {
