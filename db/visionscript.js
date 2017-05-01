@@ -31,7 +31,7 @@ const visionPromise = () => {
         url: 'https://vision.googleapis.com/v1/images:annotate?key=' + visionkey,
         json: mockReq (obj.url)
       }, (err, resp, body) => {
-        console.log(body.responses[0].error) //
+        console.log(body)
         const temp = body.responses[0].imagePropertiesAnnotation.dominantColors.colors.slice(0,4);
         temp.map((palette) => {
           const clr = palette.color

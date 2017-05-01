@@ -20,6 +20,7 @@ module.exports = (knex) => {
     .select('*')
     .limit(60)
     .then((results) => {
+      /*
       results.forEach((url) => {
         knex('likesdb')
         .select('*')
@@ -31,7 +32,8 @@ module.exports = (knex) => {
           }
         })
       }) //HOW TO PROMISIFY THIS SO THE RES.JSON RESULTS WILL SEND PROPERLY
-      //res.json(results)
+      */
+      res.json(results)
     })
     .catch((err) => { console.error(err) })
   })//landing page for the site

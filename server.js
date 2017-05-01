@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const PORT        = process.env.PORT || 8080
+const PORT        = process.env.PORT || 8005
 const ENV         = process.env.ENV || 'development'
 const express     = require('express')
 const bodyParser  = require('body-parser')
@@ -24,6 +24,8 @@ app.use(express.static('public'))
 app.use('/', dashboardRoutes(knex, bcrypt))
 app.use('/', landingRoutes(knex))
 
-// app.listen(PORT, () => {
-//   console.log('Example app listening on port ' + PORT)
-// })
+app.get('/test', (req, res) => {
+  res.sendFile(__dirname + '/test.html')
+})
+
+app.listen(PORT)
