@@ -18,11 +18,11 @@ let data = {}
 const flickrPromise = () => {
   return new Promise((resolve) => {
     Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-      const group = flickrgroupIDs[0] //change this every run!
+      const group = flickrgroupIDs[1] //change this every run!
       flickr.groups.pools.getPhotos({
         group_id: group,
         per_page: 500,
-        page: 84
+        page: 1
       }, function(err, result) {
         if (err) {throw new Error(err)}
         console.log(result.photos)
