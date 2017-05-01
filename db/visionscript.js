@@ -1,4 +1,4 @@
-const flickrarr11 = require('./flickrarr11') //change this every run
+const flickrarr11 = require('./arr11') //change this every run
 const fs = require('fs')
 const request = require('request')
 const dotenv = require('dotenv').config()

@@ -18,11 +18,11 @@ let data = {}
 const flickrPromise = () => {
   return new Promise((resolve) => {
     Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-      const group = flickrgroupIDs[3] //change this every run!
+      const group = flickrgroupIDs[1] //change this every run!
       flickr.groups.pools.getPhotos({
         group_id: group,
         per_page: 500,
-        page: 25
+        page: 30
       }, function(err, result) {
         if (err) {throw new Error(err)}
         console.log(result.photos)
@@ -55,6 +55,9 @@ const flickrPromise = () => {
   })
 } //makes 2 API calls to Flickr - then adds a new object to data for each photo with geo-locations
 
+/*
 (async function() {
   let result = await flickrPromise()
 })()
+*/
+flickrPromise()
