@@ -8,7 +8,9 @@ console.log(req.body) >> to double check where the content is!
 module.exports = (knex) => {
 
   router.get('/', (req, res) => {
-    //add implementation for logged-in users on which image is already faved!!
+    //TODO: add implementation for logged-in users on which image is already faved!!
+    //which means i also need the logged in user's user id with this get request
+    const userid = 1
     knex('imagesdb')
     .whereBetween('red1', [0, 60]) // WHEN DB IS FULLY SEEDED
     .andWhereBetween('green1', [0, 60]) //DONT FORGET TO CHANGE THESE RGB VALUES
@@ -17,7 +19,18 @@ module.exports = (knex) => {
     .select('*')
     .limit(60)
     .then((results) => {
-      res.json(results)
+      results.forEach((url) => {
+        knex('likesdb')
+        .select('*')
+        .where('imagesid', url.id)
+        .andWhere('usersid', userid)
+        .then((results) => {
+          if (results == true) {
+            url['liked'] = true
+          }
+        })
+      }) //HOW TO PROMISIFY THIS SO THE RES.JSON RESULTS WILL SEND PROPERLY
+      //res.json(results)
     })
   })//landing page for the site
 
@@ -37,7 +50,7 @@ module.exports = (knex) => {
       res.json(results)
     })
     //TODO: multi-colour query
-    
+
   }) //colour query
 
   router.get('/geo', (req, res) => {
