@@ -2,8 +2,9 @@ const express = require('express')
 const router  = express.Router()
 /*
 TODO:
-AFTER the real massive db seeding, look into how many urls i can actually get back so determine colour range and score minimum
-console.log(req.body) >> to double check where the content is!
+- AFTER the real massive db seeding, look into how many urls i can actually get back so determine colour range and score minimum
+- double check where the content is from the front end - req.body VS req.params?
+- how to promisify a knex call wrapped within a for loop O.o
 */
 module.exports = (knex) => {
 
