@@ -67,7 +67,7 @@ const makeString = () => {
   const writeStream = () => {
     return new Promise((resolve) => {
       console.log(`begin write stream`)
-      const filePath = './seeds/11imagesdb.js'
+      const filePath = './seeds/12imagesdb.js'
       fs.writeFile(filePath, toSave, function(err) {
         if(err) {
           return console.log(err)
