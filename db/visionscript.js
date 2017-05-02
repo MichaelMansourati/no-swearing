@@ -1,4 +1,4 @@
-const flickrarr11 = require('./arr11') //change this every run
+const flickrarr = require('./arr14') //change this every run
 const fs = require('fs')
 const request = require('request')
 const dotenv = require('dotenv').config()
@@ -25,7 +25,7 @@ const mockReq = (url) => {
 const visionPromise = () => {
   return new Promise((resolve) => {
     console.log(`begin Vision API call for palettes`)
-    flickrarr11.forEach((obj) => {
+    flickrarr.forEach((obj) => {
       let paletteArr = []
       request({
         method: 'POST',
@@ -54,7 +54,7 @@ const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
     toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
-      flickrarr11.forEach((obj) => {
+      flickrarr.forEach((obj) => {
         const p = obj.geo
         const s = obj.palette
         toSave += `knex('imagesdb').insert({url: '${obj.url}', lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: '${p.neighbourhood._content}', locality: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}', photog: '${obj.photog}', views: ${obj.views}, score1: ${s[0].score}, red1: ${s[0].red}, green1: ${s[0].green}, blue1: ${s[0].blue}, score2: ${s[1].score}, red2: ${s[1].red}, green2: ${s[1].green}, blue2: ${s[1].blue}, score3: ${s[2].score}, red3: ${s[2].red}, green3: ${s[2].green}, blue3: ${s[2].blue}, score4: ${s[3].score}, red4: ${s[3].red}, green4: ${s[3].green}, blue4: ${s[3].blue} }),\n`
@@ -67,7 +67,7 @@ const makeString = () => {
   const writeStream = () => {
     return new Promise((resolve) => {
       console.log(`begin write stream`)
-      const filePath = './seeds/12imagesdb.js'
+      const filePath = './seeds/14imagesdb.js'
       fs.writeFile(filePath, toSave, function(err) {
         if(err) {
           return console.log(err)
@@ -77,20 +77,6 @@ const makeString = () => {
       })
     })
   } //file stream to write into the seed file
-
-/*
-  flickrPromise()
-  .then(() => {
-  visionPromise()
-})
-.then(() => {
-makeString()
-})
-.then(() => {
-writeStream()
-})
-.catch(console.error)
-*/
 
 (async function() {
   let result1 = await visionPromise()
