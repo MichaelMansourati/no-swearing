@@ -3,6 +3,7 @@ const fs = require('fs')
 const request = require('request')
 const dotenv = require('dotenv').config()
 const visionkey = process.env.VISION_API_KEY
+let toSave = ''
 
 const mockReq = (url) => {
   return ({"requests":[
