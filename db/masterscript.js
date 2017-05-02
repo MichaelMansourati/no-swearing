@@ -13,7 +13,8 @@ flickrOptions = {
   }
 }
 
-const flickrgroupIDs = ['17242708@N00', '51829765@N00', '81344316@N00', '541622@N23'] //all 4 relevant flickr photo groups
+const currGroupId = ['17242708@N00']
+const flickrGroupIdMasterList = ['17242708@N00', '51829765@N00', '81344316@N00', '541622@N23'] //all 4 relevant flickr photo groups
 let data = {} //each photo is its own object within this master object
 let toSave = '' //the master string for the massaged data
 
@@ -21,11 +22,11 @@ const flickrPromise = () => {
   return new Promise((resolve) => {
     console.log(`begin Flickr API call for URLs`)
     Flickr.tokenOnly(flickrOptions, function(error, flickr) {
-      flickrgroupIDs.forEach((group) => {
+      currGroupId.forEach((group) => {
         flickr.groups.pools.getPhotos({
           group_id: group,
           per_page: 500,
-          page: 2
+          page: 80
         }, function(err, result) {
           if (err) {throw new Error(err)}
           result.photos.photo.forEach((bloop) => {
@@ -119,7 +120,7 @@ const writeStream = () => {
       if(err) {
         return console.log(err)
       }
-      console.log("seed file successfully created - remember to delete the comma from the last knex call")
+      console.log("seed file successfully created")
       resolve("D")
     })
   })
