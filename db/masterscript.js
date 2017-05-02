@@ -92,11 +92,6 @@ const visionPromise = () => {
           paletteArr.push(clrObj)
         })
         data[j]['palette'] = paletteArr
-        //counter += 1
-        // if (counter === 900) {
-        //   setTimeout(() => 120000)
-        //   counter = 0
-        // }
       })
     }
     setTimeout(() => resolve("B"), 15000)
@@ -129,20 +124,6 @@ const writeStream = () => {
     })
   })
 } //file stream to write into the seed file
-
-/*
-flickrPromise()
-.then(() => {
-  visionPromise()
-})
-.then(() => {
-  makeString()
-})
-.then(() => {
-  writeStream()
-})
-.catch(console.error)
-*/
 
 (async function() {
   let result = await flickrPromise()

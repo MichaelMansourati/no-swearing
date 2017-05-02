@@ -50,14 +50,8 @@ const flickrPromise = () => {
           })
         })
       })
-      setTimeout(() => resolve("A"), 25000)
     })
   })
 } //makes 2 API calls to Flickr - then adds a new object to data for each photo with geo-locations
 
-/*
-(async function() {
-  let result = await flickrPromise()
-})()
-*/
 flickrPromise()

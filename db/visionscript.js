@@ -1,4 +1,6 @@
-const flickrarr = require('./arr14') //change this every run
+const dataArrFilePath = ''
+const flickrarr = require(dataArrFilePath)
+
 const fs = require('fs')
 const request = require('request')
 const dotenv = require('dotenv').config()
