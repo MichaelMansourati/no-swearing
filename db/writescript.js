@@ -7,7 +7,7 @@ let toSave = ''
 const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
-    //toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
+    toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
       visionarr.forEach((obj) => {
         console.log(obj)
         const p = obj.geo
