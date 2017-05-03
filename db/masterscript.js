@@ -23,7 +23,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 73; i < 77; i++) {
+    for (let i = 77; i < 81; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -111,7 +111,7 @@ const visionPromise = () => {
 const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
-    //toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
+    toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
