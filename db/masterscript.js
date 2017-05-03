@@ -23,7 +23,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 21; i < 26; i++) {
+    for (let i = 21; i < 25; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -110,14 +110,14 @@ const visionPromise = () => {
 const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
-    //toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
+    toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
       toSave += `knex('imagesdb').insert({url: '${data[i].url}', lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: "${p.neighbourhood._content}", locality: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}', photog: "${data[i].photog}", views: ${data[i].views}, score1: ${s[0].score}, red1: ${s[0].red}, green1: ${s[0].green}, blue1: ${s[0].blue}, score2: ${s[1].score}, red2: ${s[1].red}, green2: ${s[1].green}, blue2: ${s[1].blue}, score3: ${s[2].score}, red3: ${s[2].red}, green3: ${s[2].green}, blue3: ${s[2].blue}, score4: ${s[3].score}, red4: ${s[3].red}, green4: ${s[3].green}, blue4: ${s[3].blue} }),\n`
     }
     toSave += ']);\n});\n};'
-    setTimeout(() => resolve("C"), 1000)
+    setTimeout(() => resolve("C"), 5000)
   })
 } //massages the object data into knex calls
 
@@ -135,8 +135,8 @@ const writeStream = () => {
 } //file stream to write into the seed file
 
 (async function() {
-  let result = await flickrPromise()
-  let result1 = await visionPromise()
-  let make = await makeString()
-  let write = await writeStream()
+  await flickrPromise()
+  await visionPromise()
+  await makeString()
+  await writeStream()
 })()
