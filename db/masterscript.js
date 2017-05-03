@@ -1,3 +1,10 @@
+/*
+MASTERSCRIPT.JS contains the full programmatical seeding script.
+- For just the Flickr API calls, run 'node flickrscript.js'.
+- On Flickr API calls success, and Vision API call fails - paste your Flickr results into flickrarr.js, and run 'node visionscript.js' for the Vision API calls and write file stream.
+- On Vision API calls success, but data massaging fail - paste your Vision rresults into visionarr.js, and run 'node writescript.js' for the data massaging and write file stream.
+*/
+
 const fs = require('fs')
 const request = require('request')
 const dotenv = require('dotenv').config()
@@ -16,6 +23,7 @@ flickrOptions = {
   access_token_secret:flickrtokensecret
 }
 
+const writeStreamFilePath = "./seeds/16imagesdb.js" //the seed file path
 const currGroupId = ['17242708@N00']
 const flickrGroupIdMasterList = ['17242708@N00', '51829765@N00', '81344316@N00', '541622@N23'] //all 4 relevant flickr photo groups
 let data = {} //each photo is its own object within this master object
@@ -23,7 +31,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 77; i < 81; i++) {
+    for (let i = 81; i < 86; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -127,7 +135,7 @@ const makeString = () => {
 const writeStream = () => {
   return new Promise((resolve) => {
     console.log(`begin write stream`)
-    fs.writeFile("./seeds/15imagesdb.js", toSave, function(err) {
+    fs.writeFile(writeStreamFilePath, toSave, function(err) {
       if(err) {
         return console.log(err)
       }

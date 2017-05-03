@@ -1,5 +1,6 @@
 const dataArrFilePath = './visionarr.js'
 const visionarr = require(dataArrFilePath)
+const filePath = './seeds/15imagesdb.js' //the seed file path
 
 const fs = require('fs')
 let toSave = ''
@@ -24,7 +25,6 @@ const makeString = () => {
   const writeStream = () => {
     return new Promise((resolve) => {
       console.log(`begin write stream`)
-      const filePath = './seeds/15imagesdb.js'
       fs.writeFile(filePath, toSave, function(err) {
         if(err) {
           return console.log(err)

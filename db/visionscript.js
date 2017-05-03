@@ -1,5 +1,6 @@
 const dataArrFilePath = './flickrarr.js'
 const flickrarr = require(dataArrFilePath)
+const filePath = './seeds/15imagesdb.js' //the seed file path
 
 const fs = require('fs')
 const request = require('request')
@@ -71,7 +72,6 @@ const makeString = () => {
   const writeStream = () => {
     return new Promise((resolve) => {
       console.log(`begin write stream`)
-      const filePath = './seeds/15imagesdb.js'
       fs.writeFile(filePath, toSave, function(err) {
         if(err) {
           return console.log(err)
