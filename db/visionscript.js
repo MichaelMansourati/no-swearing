@@ -55,7 +55,7 @@ const visionPromise = () => {
 const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
-    //toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
+    toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
       flickrarr.forEach((obj) => {
         const p = obj.geo
         const s = obj.palette
