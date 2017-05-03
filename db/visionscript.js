@@ -55,7 +55,7 @@ const visionPromise = () => {
 const makeString = () => {
   return new Promise((resolve) => {
     console.log(`begin data object massaging`)
-    toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
+    //toSave += `exports.seed = function(knex, Promise) { return knex('imagesdb').then(function () { return Promise.all([\n`
       flickrarr.forEach((obj) => {
         const p = obj.geo
         const s = obj.palette
@@ -69,7 +69,7 @@ const makeString = () => {
   const writeStream = () => {
     return new Promise((resolve) => {
       console.log(`begin write stream`)
-      const filePath = './seeds/12imagesdb.js'
+      const filePath = './seeds/13imagesdb.js'
       fs.writeFile(filePath, toSave, function(err) {
         if(err) {
           return console.log(err)
