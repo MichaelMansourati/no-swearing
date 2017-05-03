@@ -34,7 +34,7 @@ const visionPromise = () => {
         url: 'https://vision.googleapis.com/v1/images:annotate?key=' + visionkey,
         json: mockReq (obj.url)
       }, (err, resp, body) => {
-        console.log(body)
+        //console.log(body)
         const temp = body.responses[0].imagePropertiesAnnotation.dominantColors.colors.slice(0,4);
         temp.map((palette) => {
           const clr = palette.color
@@ -48,7 +48,7 @@ const visionPromise = () => {
         console.log(obj)
       })
     })
-    setTimeout(() => resolve("B"), 15000)
+    setTimeout(() => resolve("B"), 25000)
   })
 } //palettizes URL images with an API call to Google Vision
 

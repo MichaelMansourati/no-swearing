@@ -23,7 +23,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 25; i < 29; i++) {
+    for (let i = 33; i < 37; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -101,6 +101,7 @@ const visionPromise = () => {
           paletteArr.push(clrObj)
         })
         data[j]['palette'] = paletteArr
+        console.log(data[j])
       })
     }
     setTimeout(() => resolve("B"), 25000)

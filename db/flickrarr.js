@@ -1,4 +1,4 @@
 let arr = [
-  //your flickr objects here
+  //your data here
 ]
 module.exports = arr
