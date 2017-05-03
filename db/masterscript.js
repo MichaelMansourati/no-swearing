@@ -23,7 +23,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 69; i < 73; i++) {
+    for (let i = 73; i < 77; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -115,7 +115,9 @@ const makeString = () => {
     for (let i in data) {
       const p = data[i].geo
       const s = data[i].palette
-      toSave += `knex('imagesdb').insert({url: '${data[i].url}', lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: "${p.neighbourhood._content}", locality: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}', photog: "${data[i].photog}", views: ${data[i].views}, score1: ${s[0].score}, red1: ${s[0].red}, green1: ${s[0].green}, blue1: ${s[0].blue}, score2: ${s[1].score}, red2: ${s[1].red}, green2: ${s[1].green}, blue2: ${s[1].blue}, score3: ${s[2].score}, red3: ${s[2].red}, green3: ${s[2].green}, blue3: ${s[2].blue}, score4: ${s[3].score}, red4: ${s[3].red}, green4: ${s[3].green}, blue4: ${s[3].blue} }),\n`
+      if (s.length == 4) {
+        toSave += `knex('imagesdb').insert({url: '${data[i].url}', lat: ${p.latitude}, lon: ${p.longitude}, neighbourhood: "${p.neighbourhood._content}", locality: '${p.locality._content}', region: '${p.region._content}', country: '${p.country._content}', photog: "${data[i].photog}", views: ${data[i].views}, score1: ${s[0].score}, red1: ${s[0].red}, green1: ${s[0].green}, blue1: ${s[0].blue}, score2: ${s[1].score}, red2: ${s[1].red}, green2: ${s[1].green}, blue2: ${s[1].blue}, score3: ${s[2].score}, red3: ${s[2].red}, green3: ${s[2].green}, blue3: ${s[2].blue}, score4: ${s[3].score}, red4: ${s[3].red}, green4: ${s[3].green}, blue4: ${s[3].blue} }),\n`
+      }
     }
     toSave += ']);\n});\n};'
     setTimeout(() => resolve("C"), 5000)
