@@ -17,5 +17,6 @@ Once inside your database, run these three commands to clear your database and (
 - TRUNCATE TABLE imagesdb RESTART IDENTITY CASCADE;
 - TRUNCATE TABLE usersdb RESTART IDENTITY CASCADE;
 - TRUNCATE TABLE likesdb RESTART IDENTITY;
+
 Exit database, and run 'knex seed:run'.
 Enter back into the database, and double check that your imagesdb now contains 10372 entries :)
