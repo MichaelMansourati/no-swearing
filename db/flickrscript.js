@@ -1,12 +1,16 @@
-const fs = require('fs')
-const request = require('request')
 const dotenv = require('dotenv').config()
 const flickrkey = process.env.FLICKR_API_KEY
 const flickrsecret = process.env.FLICKR_API_SECRET
-const Flickr = require("flickrapi"),
+const flickruserid = process.env.FLICKR_USER_ID
+const flickrtoken = process.env.FLICKR_ACCESS_TOKEN
+const flickrtokensecret = process.env.FLICKR_ACCESS_TOKEN_SECRET
+const Flickr = require('flickrapi'),
 flickrOptions = {
   api_key: flickrkey,
   secret: flickrsecret,
+  user_id: flickruserid,
+  access_token: flickrtoken,
+  access_token_secret:flickrtokensecret,
   requestOptions: {
     timeout: 20000,
   }
@@ -17,12 +21,12 @@ let data = {}
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+    Flickr.authenticate(flickrOptions, function(error, flickr) {
       const group = flickrgroupIDs[1] //change this every run!
       flickr.groups.pools.getPhotos({
         group_id: group,
         per_page: 500,
-        page: 1
+        page: 82
       }, function(err, result) {
         if (err) {throw new Error(err)}
         console.log(result.photos)

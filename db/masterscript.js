@@ -3,11 +3,17 @@ const request = require('request')
 const dotenv = require('dotenv').config()
 const flickrkey = process.env.FLICKR_API_KEY
 const flickrsecret = process.env.FLICKR_API_SECRET
+const flickruserid = process.env.FLICKR_USER_ID
+const flickrtoken = process.env.FLICKR_ACCESS_TOKEN
+const flickrtokensecret = process.env.FLICKR_ACCESS_TOKEN_SECRET
 const visionkey = process.env.VISION_API_KEY
 const Flickr = require("flickrapi"),
 flickrOptions = {
   api_key: flickrkey,
   secret: flickrsecret,
+  user_id: flickruserid,
+  access_token: flickrtoken,
+  access_token_secret:flickrtokensecret,
   requestOptions: {
     timeout: 20000,
   }
@@ -21,7 +27,7 @@ let toSave = '' //the master string for the massaged data
 const flickrPromise = () => {
   return new Promise((resolve) => {
     console.log(`begin Flickr API call for URLs`)
-    Flickr.tokenOnly(flickrOptions, function(error, flickr) {
+    Flickr.authenticate(flickrOptions, function(error, flickr) {
       currGroupId.forEach((group) => {
         flickr.groups.pools.getPhotos({
           group_id: group,
