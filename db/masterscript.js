@@ -23,7 +23,7 @@ let toSave = '' //the master string for the massaged data
 
 const flickrPromise = () => {
   return new Promise((resolve) => {
-    for (let i = 45; i < 49; i++) {
+    for (let i = 49; i < 53; i++) {
       console.log(`begin Flickr API call for ${currGroupId} page ${i}`)
       Flickr.authenticate(flickrOptions, function(error, flickr) {
         currGroupId.forEach((group) => {
@@ -125,7 +125,7 @@ const makeString = () => {
 const writeStream = () => {
   return new Promise((resolve) => {
     console.log(`begin write stream`)
-    fs.writeFile("./seeds/13imagesdb.js", toSave, function(err) {
+    fs.writeFile("./seeds/14imagesdb.js", toSave, function(err) {
       if(err) {
         return console.log(err)
       }
