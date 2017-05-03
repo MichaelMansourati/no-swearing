@@ -12,7 +12,7 @@ Browse Toronto by colour the next time you have a great outfit and need a matchi
 - Google Maps API
 
 ## How to use seed files
-Run 'psql -U <dbname> <username>' on command line, and enter password when prompted.
+Run 'psql -U _your_dbname_ _your_username_' on command line, and enter password when prompted.
 Once inside your database, run these three commands to clear your database and (more importantly,) to _reset the IDs of the tables_:
 - TRUNCATE TABLE imagesdb RESTART IDENTITY CASCADE;
 - TRUNCATE TABLE usersdb RESTART IDENTITY CASCADE;
