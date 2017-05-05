@@ -2,14 +2,13 @@
 This repository contains the back-end database calls, and entire database scripts and seeds for the project ColourScape.
 
 ## ColourScape Description
-Browse Toronto by colour the next time you have a great outfit and need a matching wall for that perfect Instagram picture.
+Got an amazing outfit but no walls to take photos in front of? Browse Toronto and its various neighbourhoods by your desired colour palettes with Colourscape.
 
 ## Stack Requirements
 - React
 - JavaScript
 - Google Cloud Platform Vision API
 - Flickr API
-- Google Maps API
 
 ## How to use seed files
 Run 'psql -U _your_dbname_ _your_username_' on command line, and enter password when prompted.
@@ -19,4 +18,3 @@ Once inside your database, run these three commands to clear your database and (
 - TRUNCATE TABLE likesdb RESTART IDENTITY;
 
 Exit database, and run 'knex seed:run'.
-Enter back into the database, and double check that your imagesdb now contains 10372 entries :)
