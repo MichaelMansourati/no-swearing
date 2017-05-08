@@ -26,4 +26,7 @@ TRUNCATE TABLE imagesdb RESTART IDENTITY CASCADE;
 TRUNCATE TABLE usersdb RESTART IDENTITY CASCADE;
 TRUNCATE TABLE likesdb RESTART IDENTITY;
 ```
-Exit database, and run 'knex seed:run'.
+Exit database, and run the follow on command line to seed your database :)
+```
+knex seed:run
+```
