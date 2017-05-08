@@ -16,11 +16,10 @@ Got an amazing outfit but no walls to take photos in front of? Browse Toronto an
 - Flickr API
 
 ### How to use seed files
-Run
+Type the following on command line, and enter password when prompted.
 ```
 psql -U <your_dbname> <your_username>
 ```
-on command line, and enter password when prompted.
 Once inside your database, run these three commands to clear your database and (more importantly,) to _reset the IDs of the tables_:
 ```
 TRUNCATE TABLE imagesdb RESTART IDENTITY CASCADE;
