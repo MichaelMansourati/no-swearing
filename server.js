@@ -5,6 +5,7 @@ const ENV         = process.env.ENV || 'development'
 const express     = require('express')
 const bodyParser  = require('body-parser')
 const app         = express()
+const cors        = require('cors')
 const bcrypt      = require('bcrypt')
 const knexConfig  = require('./knexfile')
 const knex        = require('knex')(knexConfig[ENV])
@@ -16,6 +17,7 @@ const landingRoutes = require('./routes/landing')
 
 app.use(morgan('dev'))
 app.use(knexLogger(knex))
+app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
